@@ -1,35 +1,40 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import * as React from 'react';
+import { Link} from 'react-router-dom';
+import Main from './Main';
+import { BottomNavigation, BottomNavigationAction, Box } from '@mui/material';
+import RestoreIcon from '@mui/icons-material/Restore';
+import FavoriteIcon from '@mui/icons-material/Favorite';
+import LocationOnIcon from '@mui/icons-material/LocationOn';
 
-function App() {
-  const [count, setCount] = useState(0)
+
+export default function App() {
+  const [value, setValue] = React.useState('recents');
+
+  const handleChange = (event: React.SyntheticEvent, newValue: string) => {
+    setValue(newValue);
+  };
 
   return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
+    <Box>
+      <Main />  
+      <hr />
+      <BottomNavigation sx={{ width: 500 }} value={value} onChange={handleChange}>
+        <BottomNavigationAction
+          label="Recents"
+          value="recents"
+          icon={<RestoreIcon />}
+        />
+        <BottomNavigationAction
+          label="Favorites"
+          value="favorites"
+          icon={<FavoriteIcon />}
+        />
+        <BottomNavigationAction
+          label="Nearby"
+          value="nearby"
+          icon={<LocationOnIcon />}
+        />
+      </BottomNavigation> 
+    </Box>
   )
 }
-
-export default App
