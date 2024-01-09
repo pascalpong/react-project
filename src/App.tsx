@@ -1,9 +1,7 @@
 import * as React from 'react';
 import Box from '@mui/material/Box'; 
-import BottomNavigation from '@mui/material/BottomNavigation';
-import Paper from '@mui/material/Paper';
 import Main from './Main';
-import { Button, Container, Stack } from '@mui/material';
+import { Container } from '@mui/material';
 import Footer from './components/Footer';
  
  
