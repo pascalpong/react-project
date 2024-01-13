@@ -1,10 +1,14 @@
+import { Box } from "@mui/material";
+import SocialMedia from "./Cards/SocialMedia";
 
 const Contact = () => {
-    return (
-        <>
-            {'contact'}
-        </>
-    )
-}
+  return (
+    <>
+      <Box p={1}>
+        <SocialMedia />
+      </Box>
+    </>
+  );
+};
 
-export default Contact
+export default Contact;
