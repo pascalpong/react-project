@@ -1,8 +1,13 @@
+import { Box } from "@mui/material"
 
 const Contact = () => {
     return (
         <>
-            {'contact'}
+            <Box pt={8}>
+                <Box>
+                    {'contact'}
+                </Box>
+            </Box>
         </>
     )
 }
