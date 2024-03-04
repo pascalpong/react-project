@@ -1,15 +1,16 @@
-import { Box } from "@mui/material"
+import { Box } from "@mui/material";
+import SocialMedia from "./Cards/SocialMedia";
 
 const Contact = () => {
-    return (
-        <>
-            <Box pt={8}>
-                <Box>
-                    {'contact'}
-                </Box>
+  return (
+    <>
+        <Box pt={8}>
+            <Box>
+                <SocialMedia />
             </Box>
-        </>
-    )
-}
+        </Box>
+    </>
+  );
+};
 
-export default Contact
+export default Contact;
