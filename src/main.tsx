@@ -1,6 +1,5 @@
 import { Routes, Route } from 'react-router-dom';
 import Home from './components/Home';
-import Contact from './components/Contact';
 import Information from './components/Information';
 
 const Main = ({location}: {location:any}) => {
@@ -9,7 +8,6 @@ const Main = ({location}: {location:any}) => {
       <Routes location={location}>
         <Route path='/' element={<Home/>} />
         <Route path='/info' element={<Information/>} />
-        <Route path='/contact' element={<Contact/>} />
       </Routes>
     </div>
   );
