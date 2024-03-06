@@ -20,26 +20,29 @@ const SocialMedia = () => {
             Social Media
           </Typography>
         </CardContent>
-        <CardActions
+        <Stack 
           sx={{
             position: "fixed",
             right: 0,
             left: 0,
             bottom: "10%",
+            p: 4
           }}
+          spacing={{ xs: 1, sm: 2 }} 
+          direction="row" 
+          useFlexGap 
+          flexWrap="wrap"
         >
-            <Stack spacing={{ xs: 1, sm: 2 }} direction="row" useFlexGap flexWrap="wrap">
-                <Button fullWidth variant="outlined" endIcon={<LinkedInIcon />}>
-                LinkedIn
-                </Button>
-                <Button fullWidth variant="outlined" endIcon={<GitHubIcon />}>
-                Github
-                </Button>
-                <Button fullWidth variant="outlined" endIcon={<WhatsAppIcon />}>
-                Whatsapp
-                </Button>
-            </Stack>
-        </CardActions>
+            <Button fullWidth variant="outlined" endIcon={<LinkedInIcon />}>
+              LinkedIn
+            </Button>
+            <Button fullWidth variant="outlined" endIcon={<GitHubIcon />}>
+              Github
+            </Button>
+            <Button fullWidth variant="outlined" endIcon={<WhatsAppIcon />}>
+              Whatsapp
+            </Button>
+        </Stack>
       </Card>
     </Box>
   );
