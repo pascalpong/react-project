@@ -47,24 +47,7 @@ const ProfileSheet = () => {
                   loading="lazy"
                   alt=""
                 />
-              </AspectRatio>
-              <IconButton
-                aria-label="upload new picture"
-                size="sm"
-                variant="outlined"
-                color="neutral"
-                sx={{
-                  bgcolor: 'background.body',
-                  position: 'absolute',
-                  zIndex: 2,
-                  borderRadius: '50%',
-                  left: 100,
-                  top: 170,
-                  boxShadow: 'sm',
-                }}
-              >
-                <EditRoundedIcon />
-              </IconButton>
+              </AspectRatio> 
             </Stack>
             <Stack spacing={2} sx={{ flexGrow: 1 }}>
               <Stack spacing={1}>
@@ -209,17 +192,7 @@ const ProfileSheet = () => {
                 </Select>
               </FormControl>
             </div>
-          </Stack>
-          <CardOverflow sx={{ borderTop: '1px solid', borderColor: 'divider' }}>
-            <CardActions sx={{ alignSelf: 'flex-end', pt: 2 }}>
-              <Button size="sm" variant="outlined" color="neutral">
-                Cancel
-              </Button>
-              <Button size="sm" variant="solid">
-                Save
-              </Button>
-            </CardActions>
-          </CardOverflow>
+          </Stack> 
         </Card>
     )
 }

@@ -5,7 +5,7 @@ import List from '@mui/joy/List';
 import Layout from './components/Layout';
 import FooterStack from './components/FooterStack';
 import InfoSheet from './components/InfoSheet';
-import { Stack } from '@mui/joy';
+import { Box, Stack } from '@mui/joy';
 import { Grid } from '@mui/material';
 import ContentSheet from './components/ContentSheet';
 import ProfileSheet from './components/ProfileSheet';
@@ -76,44 +76,22 @@ export default function Information() {
     },
   ];
 
-  return (
-    <CssVarsProvider disableTransitionOnChange>
-      <CssBaseline />
-      {/* {drawerOpen && (
-        <Layout.SideDrawer onClose={() => setDrawerOpen(false)}>
-          <Navigation />
-        </Layout.SideDrawer>
-      )} */}
+  return ( 
+    <>
       <FooterStack />
-      {/* <Layout.Root
-        sx={{
-          ...(drawerOpen && {
-            height: '100vh',
-            overflow: 'hidden',
-          }),
-        }}
-      > */}
-        {/* <Layout.Header>
-          <Header />
-        </Layout.Header> */}
-        {/* <Layout.SideNav>
-          <Navigation />
-        </Layout.SideNav> */}
-        {/* <SidePane /> */}
-        {/* <Layout.Main> */}
-        <Grid container spacing={1}>
-          <Grid item xs={12} sm={6} lg={4}>
+      <Grid container spacing={1}>
+        <Grid item xs={12} lg={8} spacing={2}>
+          <Box p={1}>
             <ProfileSheet />
-          </Grid>
-          <Grid item xs={12} sm={6} lg={4}>
+          </Box>
+          <Box p={1}>
             <ContentSheet />
-          </Grid>
-          <Grid item xs={12} sm={6} lg={4}>
-            <InfoSheet data={peopleData} />
-          </Grid> 
+          </Box>
         </Grid>
-        {/* </Layout.Main> */}
-      {/* </Layout.Root> */}
-    </CssVarsProvider>
+        <Grid item xs={12} lg={4}>
+          <InfoSheet data={peopleData} />
+        </Grid> 
+      </Grid> 
+    </>
   );
 }
