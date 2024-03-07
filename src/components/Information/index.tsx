@@ -5,8 +5,8 @@ import List from '@mui/joy/List';
 import Layout from './components/Layout';
 import FooterStack from './components/FooterStack';
 import InfoSheet from './components/InfoSheet';
-import { Box, Stack } from '@mui/joy';
-import { Grid } from '@mui/material';
+import { Box, Stack, Typography } from '@mui/joy';
+import { Container, Grid } from '@mui/material';
 import ContentSheet from './components/ContentSheet';
 import ProfileSheet from './components/ProfileSheet';
 
@@ -79,19 +79,26 @@ export default function Information() {
   return ( 
     <>
       <FooterStack />
-      <Grid container spacing={1}>
-        <Grid item xs={12} lg={8} spacing={2}>
-          <Box p={1}>
-            <ProfileSheet />
-          </Box>
-          <Box p={1}>
-            <ContentSheet />
-          </Box>
-        </Grid>
-        <Grid item xs={12} lg={4}>
-          <InfoSheet data={peopleData} />
+      <Container>
+        <Grid container spacing={1}>
+          <Grid item xs={12} lg={8} spacing={2}>
+            <Box p={1} id="profile">
+              <ProfileSheet />
+            </Box>
+            <Box p={1} id="content">
+              <ContentSheet />
+            </Box>
+          </Grid>
+          <Grid 
+            item 
+            xs={12} 
+            lg={4} 
+            id="info"
+          >
+            <InfoSheet data={peopleData} />
+          </Grid> 
         </Grid> 
-      </Grid> 
+      </Container>
     </>
   );
 }

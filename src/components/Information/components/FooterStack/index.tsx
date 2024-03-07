@@ -28,7 +28,7 @@ const FooterStack = () => {
         variant="plain"
         color="neutral"
         component="a"
-        href="/joy-ui/getting-started/templates/email/"
+        href="#profile"
         size="sm"
         startDecorator={<EmailRoundedIcon />}
         sx={{ flexDirection: 'column', '--Button-gap': 0 }}
@@ -40,7 +40,7 @@ const FooterStack = () => {
         color="neutral"
         aria-pressed="true"
         component="a"
-        href="/joy-ui/getting-started/templates/team/"
+        href="#content"
         size="sm"
         startDecorator={<PeopleAltRoundedIcon />}
         sx={{ flexDirection: 'column', '--Button-gap': 0 }}
@@ -51,7 +51,7 @@ const FooterStack = () => {
         variant="plain"
         color="neutral"
         component="a"
-        href="/joy-ui/getting-started/templates/files/"
+        href="#info"
         size="sm"
         startDecorator={<FolderRoundedIcon />}
         sx={{ flexDirection: 'column', '--Button-gap': 0 }}

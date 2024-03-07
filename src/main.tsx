@@ -1,17 +1,16 @@
-import { Routes, Route } from 'react-router-dom';
+import { useRoutes, Navigate } from 'react-router-dom';
 import Home from './components/Home';
 import Information from './components/Information';
-import { Container } from '@mui/joy';
+import PrivateRoutes from './PrivateRoutes'; // This is the component that requires authentication
 
-const Main = ({location}: {location:any}) => {
-  return (
-    <Container>
-      <Routes location={location}>
-        <Route path='/' element={<Home/>} />
-        <Route path='/info' element={<Information/>} />
-      </Routes>
-    </Container>
-  );
-}
+const Main = ({ isAuthenticated }: { isAuthenticated: boolean }) => {
+  let routes = useRoutes([
+    { path: '/', element: <Home /> },
+    { path: '/info', element: <Information /> },
+    { path: '/private', element: isAuthenticated ? <PrivateRoutes isAuthenticated={isAuthenticated} /> : <Navigate to="/info#serial" replace /> },
+  ]);
+
+  return <div>{routes}</div>; // Wrap the routes in a div
+};
 
 export default Main;

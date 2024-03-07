@@ -1,4 +1,3 @@
-import * as React from 'react';
 import Box from '@mui/joy/Box';
 import Chip from '@mui/joy/Chip';
 import Card from '@mui/joy/Card';
@@ -6,21 +5,22 @@ import CardOverflow from '@mui/joy/CardOverflow';
 import Sheet from '@mui/joy/Sheet';
 import Typography from '@mui/joy/Typography';
 import Button from '@mui/joy/Button';
-import Snackbar from '@mui/joy/Snackbar';
 import AspectRatio from '@mui/joy/AspectRatio';
 import Divider from '@mui/joy/Divider';
-import Avatar from '@mui/joy/Avatar';
-import Tooltip from '@mui/joy/Tooltip';
-
-import DeleteRoundedIcon from '@mui/icons-material/DeleteRounded';
-import ForwardToInboxRoundedIcon from '@mui/icons-material/ForwardToInboxRounded';
 import FolderIcon from '@mui/icons-material/Folder';
-import ReplyRoundedIcon from '@mui/icons-material/ReplyRounded';
 import FolderCopyIcon from '@mui/icons-material/FolderCopy';
 import { Input } from '@mui/joy';
-import { LocationOn } from '@mui/icons-material';
+import { useEffect, useState } from 'react';
 
 const ContentSheet = () => {
+
+  const [checkSerial, setCheckSerial] = useState(false);
+
+  useEffect(() => {
+    if (window.location.hash.includes('serial')) {
+      setCheckSerial(true);
+    }
+  },[])
  
     return (
         <Sheet
@@ -58,6 +58,7 @@ const ContentSheet = () => {
         > 
           <Input
             fullWidth
+            error={checkSerial}
             placeholder="Serial number"
             endDecorator={
               <Button variant="soft" color="neutral" startDecorator={<FolderCopyIcon />}>
