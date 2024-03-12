@@ -80,8 +80,8 @@ export default function Information() {
     <>
       <FooterStack />
       <Container>
-        <Grid container spacing={1}>
-          <Grid item xs={12} lg={8} spacing={2}>
+        <Grid container>
+          <Grid item xs={12} lg={8}>
             <Box p={1} id="profile">
               <ProfileSheet />
             </Box>

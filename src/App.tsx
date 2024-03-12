@@ -9,28 +9,17 @@ export default function FixedBottomNavigation() {
 
   const ref = useRef<HTMLDivElement>(null);
   const location = useLocation();
-  const [isAnimating, setIsAnimating] = useState(false);
-  const isAuthenticated = useIsAuthenticated();
-
-  function useIsAuthenticated() {
-    const [isAuthenticated, setIsAuthenticated] = useState(false);
-  
-    useEffect(() => {
-      // Replace this with your actual authentication check
-      const checkAuthentication = async () => {
-        const response = await fetch('/api/check-authentication');
-        const data = await response.json();
-        setIsAuthenticated(data.isAuthenticated);
-      };
-  
-      checkAuthentication();
-    }, []);
-  
-    return isAuthenticated;
-  }
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+ 
+  useEffect(() => { 
+    const access = JSON.parse(localStorage.getItem('access') || '{}');
+    if (access && Object.keys(access).length > 0) {
+      setIsAuthenticated(true);
+    }
+  }, []); 
  
   return (
-    <Box ref={ref} className={isAnimating ? 'page-transition' : ''}>
+    <Box ref={ref} className={'page-transition'}>
       <TransitionGroup>
         <CSSTransition
           key={location.key}

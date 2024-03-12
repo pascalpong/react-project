@@ -1,17 +1,15 @@
-import { Navigate, useRoutes } from 'react-router-dom';
-import ProjectList from './ProjectList';
+import { Navigate, useLocation } from 'react-router-dom';
+import React from 'react';
 
-interface PrivateRoutesProps {
+interface PrivateRouteProps {
   isAuthenticated: boolean;
+  children: React.ReactElement | null;
 }
 
-const PrivateRoutes = ({ isAuthenticated }: PrivateRoutesProps) => {
-  let routes = useRoutes([
-    // Add your private routes here
-    { path: 'dashboard', element: isAuthenticated ? <ProjectList /> : <Navigate to="/login" replace /> },
-  ]);
+const PrivateRoute = ({ isAuthenticated, children }: PrivateRouteProps) => {
+  const location = useLocation();
 
-  return routes;
+  return isAuthenticated ? (children || <React.Fragment />) : <Navigate to="/info#serial" replace state={{ from: location }} />;
 };
 
-export default PrivateRoutes;
+export default PrivateRoute;
