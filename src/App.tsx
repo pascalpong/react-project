@@ -2,12 +2,12 @@ import './App.css';
 import Box from '@mui/material/Box'; 
 import Main from './Main';
 import { useEffect, useRef, useState } from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useLocation } from 'react-router-dom';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
+// import AuthProvider from './AuthProvider';
  
 export default function FixedBottomNavigation() {
 
-  const ref = useRef<HTMLDivElement>(null);
   const location = useLocation();
   const [isAuthenticated, setIsAuthenticated] = useState(false);
  
@@ -19,14 +19,16 @@ export default function FixedBottomNavigation() {
   }, []); 
  
   return (
-    <Box ref={ref} className={'page-transition'}>
+    <Box className={'page-transition'}>
       <TransitionGroup>
         <CSSTransition
           key={location.key}
           classNames="page-transition"
           timeout={300}
         >
-          <Main isAuthenticated={isAuthenticated} />
+          {/* <AuthProvider> */}
+            <Main isAuthenticated={isAuthenticated} />
+          {/* </AuthProvider> */}
         </CSSTransition>
       </TransitionGroup>
     </Box>
