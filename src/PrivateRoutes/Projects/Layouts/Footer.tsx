@@ -1,62 +1,58 @@
-import { Button, Stack } from "@mui/joy";
-import EmailRoundedIcon from '@mui/icons-material/EmailRounded';
-import PeopleAltRoundedIcon from '@mui/icons-material/PeopleAltRounded';
-import FolderRoundedIcon from '@mui/icons-material/FolderRounded';
+import { Button, Stack } from "@mui/joy"; 
+import FolderIcon from '@mui/icons-material/Folder'
+import AccountBoxRoundedIcon from '@mui/icons-material/AccountBoxRounded';
+import { useNavigate } from "react-router-dom";
 
 
 const Footer = () => {
+  
+  const navigate = useNavigate();
+  const navigateTo = (path: string) => () => {
+    navigate(path)
+  }
+
     return (
-        
     <Stack
       id="tab-bar"
       direction="row"
-      justifyContent="space-around"
-      spacing={1}
+      justifyContent="space-evenly" 
       sx={{
         display: { xs: 'flex', sm: 'none' },
         zIndex: '999',
         bottom: 0,
         position: 'fixed',
-        width: '100dvw',
-        py: 2,
+        width: '100vw',
+        py: 1,
         backgroundColor: 'background.body',
         borderTop: '1px solid',
         borderColor: 'divider',
       }}
     >
       <Button
-        variant="plain"
+        variant="outlined"
         color="neutral"
-        component="a"
         href="#profile"
         size="sm"
-        startDecorator={<EmailRoundedIcon />}
-        sx={{ flexDirection: 'column', '--Button-gap': 0 }}
+        startDecorator={<FolderIcon />}
+        sx={{ 
+          flexDirection: 'row', 
+          width: '75%'
+        }}
       >
-        Email
+        Download Resume
       </Button>
       <Button
-        variant="plain"
+        variant="solid"
         color="neutral"
-        aria-pressed="true"
-        component="a"
-        href="#content"
+        onClick={navigateTo('/info')}
         size="sm"
-        startDecorator={<PeopleAltRoundedIcon />}
-        sx={{ flexDirection: 'column', '--Button-gap': 0 }}
+        startDecorator={<AccountBoxRoundedIcon />}
+        sx={{ 
+          flexDirection: 'column', 
+          width: '20%'
+        }}
       >
-        Team
-      </Button>
-      <Button
-        variant="plain"
-        color="neutral"
-        component="a"
-        href="#info"
-        size="sm"
-        startDecorator={<FolderRoundedIcon />}
-        sx={{ flexDirection: 'column', '--Button-gap': 0 }}
-      >
-        Files
+        Profile
       </Button>
     </Stack>
     )

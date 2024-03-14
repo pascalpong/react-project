@@ -9,12 +9,12 @@ import AspectRatio from '@mui/joy/AspectRatio';
 import Divider from '@mui/joy/Divider';
 import FolderIcon from '@mui/icons-material/Folder';
 import FolderCopyIcon from '@mui/icons-material/FolderCopy';
-import { Input } from '@mui/joy';
+import { Button, Input } from '@mui/joy';
 import { useEffect, useState } from 'react';
 import { useCheckSerialMutation } from '../../../../api/serialService';
 import { useNavigate } from 'react-router-dom';
 
-const ContentSheet = ():JSX.Element => {
+const ContentSheet = ({checkSeriaResult}: {checkSeriaResult:(result: boolean) => void}): JSX.Element => {
 
   const [checkSerial, setCheckSerial] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -51,6 +51,8 @@ const ContentSheet = ():JSX.Element => {
         navigate('/projects')
       } else {
         setCheckSerial(false);
+        checkSeriaResult(false);
+        setLoading(false);
       }
     } catch (error) {
       console.log(error)
@@ -94,22 +96,20 @@ const ContentSheet = ():JSX.Element => {
             <Input
               fullWidth
               error={checkSerial}
+              color='danger'
               placeholder="Serial number"
               onChange={onChangeSerial}
               value={serial}
               endDecorator={
-                <LoadingButton 
+                <Button 
                   variant="outlined"
-                  color='info'
-                  startIcon={<FolderCopyIcon />}
+                  color='danger'
+                  startDecorator={<FolderCopyIcon />}
                   loading={loading}
                   onClick={handleCheckSerial}
-                  sx={{
-                    margin:1
-                  }}
                 >
                   See Projects
-                </LoadingButton >
+                </Button >
               } 
             />
           </Box>
@@ -154,25 +154,7 @@ const ContentSheet = ():JSX.Element => {
               '--Card-radius': theme.vars.radius.sm,
             },
           })}
-        >
-          <Card variant="outlined">
-            <AspectRatio ratio="1" sx={{ minWidth: 80 }}>
-              <img
-                src="https://images.unsplash.com/photo-1527549993586-dff825b37782?auto=format&h=80"
-                srcSet="https://images.unsplash.com/photo-1527549993586-dff825b37782?auto=format&h=160 2x"
-                alt="Yosemite National Park"
-              />
-            </AspectRatio>
-          </Card>
-          <Card variant="outlined">
-            <AspectRatio ratio="1" sx={{ minWidth: 80 }}>
-              <img
-                src="https://images.unsplash.com/photo-1532614338840-ab30cf10ed36?auto=format&h=80"
-                srcSet="https://images.unsplash.com/photo-1532614338840-ab30cf10ed36?auto=format&h=160 2x"
-                alt="Yosemite National Park"
-              />
-            </AspectRatio>
-          </Card>
+        > 
           <Card variant="outlined" orientation="horizontal">
             <CardOverflow>
               <AspectRatio ratio="1" sx={{ minWidth: 80 }}>

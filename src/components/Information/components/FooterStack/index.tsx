@@ -1,7 +1,7 @@
 import { Button, Stack } from "@mui/joy";
-import EmailRoundedIcon from '@mui/icons-material/EmailRounded';
-import PeopleAltRoundedIcon from '@mui/icons-material/PeopleAltRounded';
-import FolderRoundedIcon from '@mui/icons-material/FolderRounded';
+import AccountBoxRoundedIcon from '@mui/icons-material/AccountBoxRounded';
+import GridViewRoundedIcon from '@mui/icons-material/GridViewRounded';
+import AssignmentRoundedIcon from '@mui/icons-material/AssignmentRounded';
 
 
 const FooterStack = () => {
@@ -10,7 +10,7 @@ const FooterStack = () => {
     <Stack
       id="tab-bar"
       direction="row"
-      justifyContent="space-around"
+      justifyContent="space-evenly" 
       spacing={1}
       sx={{
         display: { xs: 'flex', sm: 'none' },
@@ -18,45 +18,53 @@ const FooterStack = () => {
         bottom: 0,
         position: 'fixed',
         width: '100dvw',
-        py: 2,
+        py: 1, 
         backgroundColor: 'background.body',
         borderTop: '1px solid',
         borderColor: 'divider',
       }}
     >
       <Button
-        variant="plain"
+        variant="outlined"
         color="neutral"
         component="a"
         href="#profile"
         size="sm"
-        startDecorator={<EmailRoundedIcon />}
-        sx={{ flexDirection: 'column', '--Button-gap': 0 }}
+        startDecorator={<AccountBoxRoundedIcon />}
+        sx={{ 
+          flexDirection: 'column', 
+          width: '30%'
+        }}
       >
-        Email
+        Profile
       </Button>
       <Button
-        variant="plain"
+        variant="outlined"
         color="neutral"
-        aria-pressed="true"
         component="a"
         href="#content"
         size="sm"
-        startDecorator={<PeopleAltRoundedIcon />}
-        sx={{ flexDirection: 'column', '--Button-gap': 0 }}
+        startDecorator={<GridViewRoundedIcon />}
+        sx={{ 
+          flexDirection: 'column',
+          width: '30%'
+        }}
       >
-        Team
+        Projects
       </Button>
       <Button
-        variant="plain"
+        variant="outlined"
         color="neutral"
         component="a"
         href="#info"
         size="sm"
-        startDecorator={<FolderRoundedIcon />}
-        sx={{ flexDirection: 'column', '--Button-gap': 0 }}
+        startDecorator={<AssignmentRoundedIcon />}
+        sx={{ 
+          flexDirection: 'column', 
+          width: '30%'
+        }}
       >
-        Files
+        Experience
       </Button>
     </Stack>
     )
