@@ -14,9 +14,23 @@ import EmailRoundedIcon from '@mui/icons-material/EmailRounded';
 import AccessTimeFilledRoundedIcon from '@mui/icons-material/AccessTimeFilledRounded';
 import ContentCopyRoundedIcon from '@mui/icons-material/ContentCopyRounded'; 
 import LocalPhoneRoundedIcon from '@mui/icons-material/LocalPhoneRounded';
-import { Button, Grid } from '@mui/joy';
+import WhatsAppIcon from '@mui/icons-material/WhatsApp';
+
+import { Button, Grid, Snackbar } from '@mui/joy';
+import { useState } from 'react';
 
 const ProfileSheet = () => {
+
+  const email = 'pongchindap@gmail.com';
+  const phoneVn = '+84367074990';
+  const phoneTh = '+66909892510';
+
+  const [open, setOpen] = useState(false);
+  const [snackberMessage, setSnackbarMessage] = useState('');
+  const whatsappContact = (phone: string) => () => {
+    window.open(`https://wa.me/${phone}`, '_blank');
+  }
+
     return (
         
         <Card>
@@ -49,62 +63,119 @@ const ProfileSheet = () => {
                 </AspectRatio> 
               </Stack>
               <Stack spacing={1} sx={{ flexGrow: 1 }}>
-                <FormLabel>Name</FormLabel>
-                <FormControl
-                  sx={{
-                    display: {
-                      sm: 'flex-column',
-                      md: 'flex-row',
-                    },
-                    gap: 2,
-                  }}
-                >
-                  <Input size="sm" placeholder="First name" />
-                  <Input size="sm" placeholder="Last name" />
-                </FormControl>
+                <>
+                  <FormLabel>Name</FormLabel>
+                  <FormControl
+                    sx={{
+                      display: {
+                        sm: 'flex-column',
+                        md: 'flex-row',
+                      },
+                      gap: 2,
+                    }}
+                  >
+                    <Typography level="body-lg" textAlign={'left'} color='neutral' >
+                      Pascal Pongchinda
+                    </Typography> 
+                    <Typography level="body-sm" textAlign={'left'} color='neutral' >
+                    Full Stack Developer
+                    </Typography> 
+                  </FormControl>
+                </>
               </Stack>
             </Stack>
-            <Grid container spacing={2}>
-              <Grid xs={12} lg={4}>
-                <Stack spacing={1}>
-                  <FormLabel>Role</FormLabel>
-                  <Input size="sm" defaultValue="UI Developer" />
-                </Stack>
-              </Grid>
-              <Grid xs={12} lg={8}>
+            <Grid container spacing={2}> 
+              <Grid xs={12} lg={12}>
                 <Stack spacing={1}>
                   <FormLabel>Contact</FormLabel>
-                  <Input
+                  <Button
                     size="sm"
-                    type="email"
-                    startDecorator={<EmailRoundedIcon />}
-                    endDecorator={<Button variant='plain' color='neutral' startDecorator={<ContentCopyRoundedIcon />}>Copy</Button>}
-                    placeholder="email"
-                    defaultValue="pongchindap@gmail.com"
+                    variant='outlined'
+                    color='neutral'
+                    onClick={
+                      () => navigator.clipboard.writeText(email)
+                        .then(() => {
+                          setOpen(true);
+                          setSnackbarMessage('Email copied to clipboard');
+                        })
+                        .catch(err => {
+                          console.error('Could not copy text: ', err);
+                        })
+                    }
+                    startDecorator={<EmailRoundedIcon />} 
                     sx={{ flexGrow: 1 }}
-                  />
-                  <Input
+                  >
+                    <Typography level="body-sm" textAlign={'left'} color='neutral'>
+                      {email}
+                    </Typography>
+                  </Button>
+                  <Button
+                    startDecorator={<WhatsAppIcon />}
+                    color='success'
+                    variant='outlined'
+                    onClick={whatsappContact(phoneTh)}
+                  >
+                    <Typography level="body-sm" textAlign={'left'} color='success'>
+                      Please contact via WhatsApp for calls,<br />
+                      out of Thailand at the moment.
+                    </Typography>
+                  </Button>
+                  <Button
                     size="sm"
-                    type="tel"
+                    variant='outlined'
+                    color='neutral'
+                    onClick={
+                      () => navigator.clipboard.writeText(phoneTh)
+                        .then(() => {
+                          setOpen(true);
+                          setSnackbarMessage('Phone number copied to clipboard');
+                        })
+                        .catch(err => {
+                          console.error('Could not copy text: ', err);
+                        })
+                    }
+                    startDecorator={<LocalPhoneRoundedIcon />} 
+                    sx={{ flexGrow: 1 }}
+                  >
+                    <Typography level="body-sm" textAlign={'left'} color='neutral'>
+                      {`(TH) ${phoneTh}`}
+                    </Typography>
+                  </Button>
+                  <Button
+                    size="sm"
+                    variant='outlined'
+                    color='neutral'
                     startDecorator={<LocalPhoneRoundedIcon />}
-                    endDecorator={<Button variant='plain' color='neutral' startDecorator={<ContentCopyRoundedIcon />}>Copy</Button>}
-                    placeholder="email"
-                    defaultValue="(TH) 0909892510"
+                    onClick={
+                      () => navigator.clipboard.writeText(phoneVn)
+                        .then(() => {
+                          setOpen(true);
+                          setSnackbarMessage('Phone number copied to clipboard');
+                        })
+                        .catch(err => {
+                          console.error('Could not copy text: ', err);
+                        })
+                    }
                     sx={{ flexGrow: 1 }}
-                  />
-                  <Input
-                    size="sm"
-                    type="tel"
-                    startDecorator={<LocalPhoneRoundedIcon />}
-                    endDecorator={<Button variant='plain' color='neutral' startDecorator={<ContentCopyRoundedIcon />}>Copy</Button>}
-                    placeholder="email"
-                    defaultValue="(VN) 0367074990"
-                    sx={{ flexGrow: 1 }}
-                  />
+                  >
+                    <Typography level="body-sm" textAlign={'left'} color='neutral'>
+                      {`(VN) ${phoneVn}`}
+                    </Typography>
+                  </Button>
                 </Stack>
               </Grid>
             </Grid>
-          </Stack> 
+          </Stack>
+          <Snackbar
+            variant='outlined'
+            color='success'
+            open={open}
+            autoHideDuration={2000}
+            onClose={() => setOpen(false)} 
+            anchorOrigin={{vertical: 'top' , horizontal: 'center'}}
+          >
+            {snackberMessage}
+          </Snackbar>
         </Card>
     )
 }

@@ -8,13 +8,13 @@ import {
   export const baseQuery = fetchBaseQuery({
     baseUrl: `${process.env.REACT_APP_API_URL}`,
     prepareHeaders: (headers) => {
-      const token = localStorage.getItem('tokens');
-      if (token) {
-        const tokenParse = JSON.parse(token);
+      const access = localStorage.getItem('access');
+      if (access) {
+        const tokenParse = JSON.parse(access); 
         const {
-          token: { accessToken }
-        } = tokenParse;
-        headers.set('Authorization', `Bearer ${accessToken}`);
+          token 
+        } = tokenParse.data;
+        headers.set('Authorization', `Bearer ${token}`);
       }
       return headers;
     }

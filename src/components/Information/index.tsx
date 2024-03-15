@@ -12,29 +12,6 @@ export default function Information() {
 
   
   const [open, setOpen] = useState(false);
-  const inAnimation = keyframes`
-    0% {
-      transform: scale(0);
-      opacity: 0;
-    }
-    100% {
-      transform: scale(1);
-      opacity: 1;
-    }
-  `;
-
-  const outAnimation = keyframes`
-    0% {
-      transform: scale(1);
-      opacity: 1;
-    }
-    100% {
-      transform: scale(0);
-      opacity: 0;
-    }
-  `;
- 
-  const animationDuration = 600;
   const checkSeriaResult = (result: boolean) => {
     setOpen(!result);
   }
@@ -67,37 +44,15 @@ export default function Information() {
           </Grid> 
         </Grid> 
       </Container>
-      <Snackbar 
-        anchorOrigin={{ 
-          vertical: 'top', 
-          horizontal : 'right' 
-        }} 
-        color="danger"
-        size="md"
-        variant="solid"
-        open={open} 
-        autoHideDuration={4000}
-        animationDuration={animationDuration} 
-        endDecorator={
-          <Button
-            onClick={() => setOpen(false)}
-            size="sm"
-            variant="soft"
-            color="danger"
-          >
-            Dismiss
-          </Button>
-        }
-        sx={{
-          width: '87%',
-          ...(open && {
-            animation: `${inAnimation} ${animationDuration}ms forwards`,
-          }),
-          ...(!open && {
-            animation: `${outAnimation} ${animationDuration}ms forwards`,
-          }),
-        }}
-      > 
+      
+      <Snackbar
+        variant='outlined'
+        color='danger'
+        open={open}
+        autoHideDuration={2000}
+        onClose={() => setOpen(false)} 
+        anchorOrigin={{vertical: 'top' , horizontal: 'center'}}
+      >
         Serial number is not valid!
       </Snackbar>
     </>
