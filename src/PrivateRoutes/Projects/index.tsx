@@ -10,19 +10,9 @@ const Projects = () => {
         <Footer />
         <Container>
             <Grid container>
-                <Grid item xs={12} lg={8}> 
-                    <Box p={1} id="content">
-                        <Content />
-                    </Box>
+                <Grid p={1} item xs={12} lg={12}> 
+                    <Content />
                 </Grid>
-                <Grid 
-                    item 
-                    xs={12} 
-                    lg={4} 
-                    id="info"
-                >
-                    
-                </Grid> 
             </Grid> 
         </Container>
         </>

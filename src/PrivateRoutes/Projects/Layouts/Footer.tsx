@@ -1,5 +1,5 @@
 import { Button, Stack } from "@mui/joy"; 
-import FolderIcon from '@mui/icons-material/Folder'
+import GitHubIcon from '@mui/icons-material/GitHub';
 import AccountBoxRoundedIcon from '@mui/icons-material/AccountBoxRounded';
 import { useNavigate } from "react-router-dom";
 
@@ -17,7 +17,7 @@ const Footer = () => {
       direction="row"
       justifyContent="space-evenly" 
       sx={{
-        display: { xs: 'flex', sm: 'none' },
+        display: 'flex',
         zIndex: '999',
         bottom: 0,
         position: 'fixed',
@@ -29,17 +29,17 @@ const Footer = () => {
       }}
     >
       <Button
+        fullWidth
         variant="outlined"
-        color="neutral"
-        href="#profile"
-        size="sm"
-        startDecorator={<FolderIcon />}
+        color="success"
+        onClick={() => window.open('https://github.com/pascalpong', '_blank')}
         sx={{ 
           flexDirection: 'row', 
           width: '75%'
         }}
+        endDecorator={<GitHubIcon />}
       >
-        Download Resume
+        Check my Github
       </Button>
       <Button
         variant="solid"

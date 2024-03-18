@@ -19,11 +19,11 @@ const InfoSheet = ({data}: {data: any}) => {
                         borderRadius: 'sm',  
                     }}
                 >
-                <Typography level="title-sm">Skills tags:</Typography> 
+                <Typography level="title-sm">Experience:</Typography> 
                     <Card  
                         sx={{ 
                             overflow: 'auto',
-                            height: '90vh', 
+                            height: ['90vh', 'auto'], 
                         }}
                     >
                     {data.map((experience:any, index: number) => (

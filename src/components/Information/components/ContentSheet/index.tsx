@@ -1,18 +1,11 @@
-import Box from '@mui/joy/Box';
-import Chip from '@mui/joy/Chip';
-import Card from '@mui/joy/Card';
-import CardOverflow from '@mui/joy/CardOverflow';
-import Sheet from '@mui/joy/Sheet';
-import Typography from '@mui/joy/Typography'; 
-import LoadingButton from '@mui/lab/LoadingButton';
-import AspectRatio from '@mui/joy/AspectRatio';
-import Divider from '@mui/joy/Divider';
-import FolderIcon from '@mui/icons-material/Folder';
+import AttachFileRoundedIcon from '@mui/icons-material/AttachFileRounded';
 import FolderCopyIcon from '@mui/icons-material/FolderCopy';
-import { Button, Input } from '@mui/joy';
+import { Button, Input, Stack, Divider, Sheet, Chip, Box, Typography, Grid } from '@mui/joy';
 import { useEffect, useState } from 'react';
 import { useCheckSerialMutation } from '../../../../api/serialService';
 import { useNavigate } from 'react-router-dom';
+import Education from './Education';
+import Languages from './Language';
 
 const ContentSheet = ({checkSeriaResult}: {checkSeriaResult:(result: boolean) => void}): JSX.Element => {
 
@@ -61,27 +54,24 @@ const ContentSheet = ({checkSeriaResult}: {checkSeriaResult:(result: boolean) =>
  
   return (
       <Sheet
-        variant="outlined"
-        sx={{
-          minHeight: 500,
+        id='content'
+        variant="outlined" 
+        sx={{  
           borderRadius: 'sm',
           p: 2,
           mb: 3,
+          width: '100%',
         }}
       > 
-        <Box
+        <Stack
+          spacing={1}
           sx={{ py: 2, display: 'flex', flexDirection: 'column', alignItems: 'center' }}
         >
           <Typography
             level="title-lg"
-            textColor="text.primary"
-            endDecorator={
-              <Chip component="span" size="sm" variant="outlined" color="warning">
-                Personal
-              </Chip>
-            }
+            textColor="text.primary" 
           >
-            Enter the serial number to see my projects!
+            Enter the serial number to see my projects and Github!
           </Typography>
           <Box
             sx={{
@@ -94,16 +84,16 @@ const ContentSheet = ({checkSeriaResult}: {checkSeriaResult:(result: boolean) =>
             }}
           > 
             <Input
-              fullWidth
+              fullWidth 
               error={checkSerial}
-              color='danger'
+              color={checkSerial ? 'danger' : 'success'}
               placeholder="Serial number"
               onChange={onChangeSerial}
               value={serial}
               endDecorator={
                 <Button 
                   variant="outlined"
-                  color='danger'
+                  color={checkSerial ? 'danger' : 'success'}
                   startDecorator={<FolderCopyIcon />}
                   loading={loading}
                   onClick={handleCheckSerial}
@@ -113,64 +103,43 @@ const ContentSheet = ({checkSeriaResult}: {checkSeriaResult:(result: boolean) =>
               } 
             />
           </Box>
-        </Box>
-        <Divider />
-        <Typography level="body-sm" mt={2} mb={2}>
-          Hello, my friend!
-          <br />
-          <br />
-          So, it seems we are getting there! Our trip is finally here. As you know, I
-          love Yosemite National Park, a lot of great climbers and explorers have made
-          history there, so I&apos;m very excited to bring you with me in this journey.
-          <br />
-          <br />
-          There are plenty of amazing things to see there, from internationally
-          recognized granite cliffs, waterfalls, clear streams, giant sequoia groves,
-          lakes, mountains, meadows, glaciers, and a lot o biological diversity. It is
-          amazing that almost 95 percent of the park is designated wilderness. Yosemite
-          is one of the largest and least fragmented habitat blocks in the Serra
-          Nevada, and the park supports a fantastic diversity of plants and animals.
-          <br />
-          <br />
-          I really hope you love coming along with me, we will have an awesome time!
-          I&apos;m attaching a few pics I took on the last time I went there-get
-          excited!
-          <br />
-          <br />
-          See you soon, Alex Jonnold
-        </Typography>
-        <Divider />
-        <Typography level="title-sm" mt={2} mb={2}>
-          Attachments
-        </Typography>
-        <Box
-          sx={(theme) => ({
-            display: 'flex',
-            flexWrap: 'wrap',
-            gap: 2,
-            '& > div': {
-              boxShadow: 'none',
-              '--Card-padding': '0px',
-              '--Card-radius': theme.vars.radius.sm,
-            },
-          })}
-        > 
-          <Card variant="outlined" orientation="horizontal">
-            <CardOverflow>
-              <AspectRatio ratio="1" sx={{ minWidth: 80 }}>
-                <div>
-                  <FolderIcon />
-                </div>
-              </AspectRatio>
-            </CardOverflow>
-            <Box sx={{ py: { xs: 1, sm: 2 }, pr: 2 }}>
-              <Typography level="title-sm" color="primary">
-                videos-hike.zip
-              </Typography>
-              <Typography level="body-xs">100 MB</Typography>
-            </Box>
-          </Card>
-        </Box>
+        </Stack> 
+        <Divider/>
+        <Stack spacing={1}>
+          <Typography level="body-sm" mt={3} mb={3}>
+            <br />
+            Has over 3 years of experience both in Thailand and abroad in
+            web - development (PHP and JS based) and 2 years of experience as
+            a part-time 3D visualizer. Collaborated with various kinds of projects
+            and various scales of clients.
+            Graduated from an international design school in Bangkok,
+            Thailand.
+            <br /> 
+          </Typography> 
+          <Grid container spacing={1} sx={{ flexGrow: 1 }}>
+            <Grid xs={12} lg={4}>
+              <Education name='Assumption University' school='School of Architecture' description='Class of 2018 - Bangkok, Thailand' />
+            </Grid>
+            <Grid xs={6} lg={4}>
+              <Languages languages={['English', 'Thai']} description='Languages' />
+            </Grid>
+            <Grid xs={6} lg={4}>
+              <Button
+                size="sm"
+                variant='outlined'
+                color='success'
+                fullWidth 
+                sx={{ height: '100%'}}
+                startDecorator={<AttachFileRoundedIcon />}
+                onClick={() => window.open('https://drive.google.com/file/d/10KX5sxC3ifiPkR_Kt6EPS50Z-T9Ae_mt/view?usp=drivesdk', '_blank')}
+              >
+                <Typography level="body-sm" textAlign={'left'} color='success'>
+                  Download my CV
+                </Typography>
+              </Button>
+            </Grid>
+          </Grid>
+        </Stack> 
       </Sheet>
   )
 }

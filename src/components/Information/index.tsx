@@ -1,6 +1,6 @@
 import FooterStack from './components/FooterStack';
 import InfoSheet from './components/InfoSheet';
-import { Box, Button, Snackbar } from '@mui/joy';
+import { Box, Button, Snackbar, Stack } from '@mui/joy';
 import { Container, Grid } from '@mui/material';
 import ContentSheet from './components/ContentSheet';
 import ProfileSheet from './components/ProfileSheet';
@@ -19,32 +19,27 @@ export default function Information() {
 
   return ( 
     <>
-      <FooterStack /> 
+      <FooterStack />
       <Container>
         <Grid
-        sx={{
-          paddingBottom: [8,0,0]
-        }}
-        container>
-          <Grid item xs={12} lg={8}>
-            <Box p={1} id="profile">
+          sx={{
+            paddingBottom: [8,0,0],
+            paddingTop: 2,
+          }}
+          spacing={1}
+          container
+        >
+          <Grid item xs={12} lg={8} id="profile">
+            <Stack spacing={1} direction="row" flexWrap="wrap" useFlexGap sx={{ height: '100%'}}>
               <ProfileSheet />
-            </Box>
-            <Box p={1} id="content">
               <ContentSheet checkSeriaResult={checkSeriaResult} />
-            </Box>
-          </Grid>
-          <Grid 
-            item 
-            xs={12} 
-            lg={4} 
-            id="info"
-          >
+            </Stack>
+          </Grid> 
+          <Grid item xs={12} lg={4} id="info">
             <InfoSheet data={ExperienceDetails} />
           </Grid> 
-        </Grid> 
+        </Grid>
       </Container>
-      
       <Snackbar
         variant='outlined'
         color='danger'
