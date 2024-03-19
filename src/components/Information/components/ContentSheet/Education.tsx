@@ -1,5 +1,4 @@
-import { Card, CardContent, Typography } from "@mui/joy";
-import { Divider } from "@mui/material";
+import { Card, CardContent, Typography, Divider } from "@mui/joy"; 
 
 const Education = ({name, school, description}: {name: string, school: string, description: string}) => {
     return (

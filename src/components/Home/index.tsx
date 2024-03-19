@@ -15,21 +15,20 @@ const Home = () => {
     return (
         <TwoSidedLayout>
             <Chip size="lg" variant="outlined" color="neutral">
-                The power to do more
+                PASCAL PONGCHINDA
             </Chip>
             <Typography
                 level="h1"
                 fontWeight="xl"
                 fontSize="clamp(1.875rem, 1.3636rem + 2.1818vw, 3rem)"
             >
-                A large headlinerer about our product features & services
+                To find out more about me and my work experience.
             </Typography>
             <Typography fontSize="lg" textColor="text.secondary" lineHeight="lg">
-                A descriptive secondary text placeholder. Use it to explain your business
-                offer better.
+                Please copy the serial number provided and paste it into the input field in the next page.
             </Typography>
             <Button variant='outlined' onClick={navigateTo('/info')} size="sm" fullWidth endDecorator={<ArrowForward />}>
-                Get Started
+                See more
             </Button>
         </TwoSidedLayout>
       );

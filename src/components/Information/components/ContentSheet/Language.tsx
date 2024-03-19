@@ -4,7 +4,7 @@ const Languages = ({languages, description}: {languages: string[], description: 
     return (
         <Card variant="outlined">
           <CardContent>
-            <Typography textAlign={'center'} level="body-xs">{description}</Typography>
+            <Typography textAlign={'center'} level="title-sm" >{description}</Typography>
           </CardContent>
           <CardOverflow variant="soft" sx={{ bgcolor: 'background.level1' }}>
             <Divider inset="context" />

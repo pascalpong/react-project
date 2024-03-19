@@ -57,15 +57,14 @@ const ContentSheet = ({checkSeriaResult}: {checkSeriaResult:(result: boolean) =>
         id='content'
         variant="outlined" 
         sx={{  
-          borderRadius: 'sm',
-          p: 2,
+          borderRadius: 'sm', 
           mb: 3,
           width: '100%',
         }}
       > 
         <Stack
           spacing={1}
-          sx={{ py: 2, display: 'flex', flexDirection: 'column', alignItems: 'center' }}
+          sx={{ p: 2, display: 'flex', flexDirection: 'column', alignItems: 'center' }}
         >
           <Typography
             level="title-lg"
@@ -77,8 +76,7 @@ const ContentSheet = ({checkSeriaResult}: {checkSeriaResult:(result: boolean) =>
             sx={{
               mt: 1,
               display: 'flex',
-              alignItems: 'start',
-              gap: 1,
+              alignItems: 'start', 
               flexWrap: 'wrap', 
               width: '100%',
             }}
@@ -105,7 +103,13 @@ const ContentSheet = ({checkSeriaResult}: {checkSeriaResult:(result: boolean) =>
           </Box>
         </Stack> 
         <Divider/>
-        <Stack spacing={1}>
+        <Stack 
+          spacing={1}
+          flexDirection={'column'} 
+          justifyContent={'center'}
+          flexGrow={1}
+          padding={1}
+        >
           <Typography level="body-sm" mt={3} mb={3}>
             <br />
             Has over 3 years of experience both in Thailand and abroad in
@@ -115,15 +119,15 @@ const ContentSheet = ({checkSeriaResult}: {checkSeriaResult:(result: boolean) =>
             Graduated from an international design school in Bangkok,
             Thailand.
             <br /> 
-          </Typography> 
-          <Grid container spacing={1} sx={{ flexGrow: 1 }}>
+          </Typography>
+          <Grid container spacing={1}>
+            <Grid xs={12} lg={8}>
+              <Stack spacing={1}>
+                <Education name='Assumption University' school='School of Architecture' description='Class of 2018 - Bangkok, Thailand' />
+                <Languages languages={['English', 'Thai']} description='Languages' />
+              </Stack>
+            </Grid>
             <Grid xs={12} lg={4}>
-              <Education name='Assumption University' school='School of Architecture' description='Class of 2018 - Bangkok, Thailand' />
-            </Grid>
-            <Grid xs={6} lg={4}>
-              <Languages languages={['English', 'Thai']} description='Languages' />
-            </Grid>
-            <Grid xs={6} lg={4}>
               <Button
                 size="sm"
                 variant='outlined'

@@ -3,13 +3,6 @@ import { Avatar, Box, Card, Chip, Divider, List, Sheet, Typography } from "@mui/
 const InfoSheet = ({data}: {data: any}) => {
     return (
         <>
-            <List
-                sx={{
-                    display: { xl: 'grid'},
-                    gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))',
-                    gap: 2, 
-                }}
-            >
                 <Card 
                     component="li"
                     variant="soft"
@@ -23,7 +16,7 @@ const InfoSheet = ({data}: {data: any}) => {
                     <Card  
                         sx={{ 
                             overflow: 'auto',
-                            height: ['90vh', 'auto'], 
+                            height: '90vh', 
                         }}
                     >
                     {data.map((experience:any, index: number) => (
@@ -49,10 +42,13 @@ const InfoSheet = ({data}: {data: any}) => {
                                     }}
                                 />
                                 <div>
-                                    <Typography level="title-md">{experience.position}</Typography>
+                                    <Typography level="title-md">{experience.name}</Typography>
                                     <Typography level="body-xs">
-                                        {experience.name}
-                                        { ` ( ${experience.durations.start.month}, ${experience.durations.start.year} - ${experience.durations.end.month}, ${experience.durations.end.year} ) `}
+                                        {experience.position}
+                                    </Typography>
+                                    <Divider />
+                                    <Typography level="body-xs">
+                                        { ` ${experience.durations.start.month}, ${experience.durations.start.year} - ${experience.durations.end.present ? `PRESENT` : `${experience.durations.end.month}, ${experience.durations.end.year}`} `}
                                     </Typography>
                                 </div> 
                             </Box>
@@ -60,7 +56,7 @@ const InfoSheet = ({data}: {data: any}) => {
                                 <Typography level="body-xs">{experience.description}</Typography>
                             <Divider component="div" sx={{ my: 2 }} />
                             <Typography level="title-sm">Technology:</Typography>
-                            <Box sx={{ mt: 1.5, display: 'flex', gap: 1 }}>
+                            <Box sx={{ mt: 1.5 , gap: 1 }}>
                                 {experience.stacks.map((skill: string, skillIndex: string) => (
                                 <Chip
                                     key={skillIndex}
@@ -75,8 +71,7 @@ const InfoSheet = ({data}: {data: any}) => {
                         </Sheet>
                     ))}
                     </Card>    
-                </Card>    
-            </List>
+                </Card>   
         </>
         
     )

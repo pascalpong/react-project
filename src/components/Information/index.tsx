@@ -20,11 +20,20 @@ export default function Information() {
   return ( 
     <>
       <FooterStack />
-      <Container>
+      <Container
+        sx={{
+          display: 'flex',
+          flexDirection: 'column',
+          justifyContent: 'center',
+          alignItems: 'center',
+          minHeight: '100vh',
+        }}
+      >
         <Grid
           sx={{
             paddingBottom: [8,0,0],
             paddingTop: 2,
+            height: '100%',
           }}
           spacing={1}
           container
