@@ -1,6 +1,6 @@
 import './App.css';
 import Box from '@mui/material/Box'; 
-import Main from './Main';
+import RouteManagement from './RouteManagement';
 import { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
@@ -27,7 +27,7 @@ export default function FixedBottomNavigation() {
           timeout={300}
         >
           {/* <AuthProvider> */}
-            <Main isAuthenticated={isAuthenticated} />
+            <RouteManagement isAuthenticated={isAuthenticated} />
           {/* </AuthProvider> */}
         </CSSTransition>
       </TransitionGroup>

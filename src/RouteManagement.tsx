@@ -4,7 +4,7 @@ import Information from './components/Information';
 import PrivateRoute from './PrivateRoutes';
 import Projects from './PrivateRoutes/Projects';
 
-const Main = ({ isAuthenticated }: { isAuthenticated: boolean }): JSX.Element => { 
+const RouteManagement = ({ isAuthenticated }: { isAuthenticated: boolean }): JSX.Element => { 
   let routes = useRoutes([
     { path: '/', element: <Home /> },
     { path: '/info', element: <Information /> },
@@ -14,4 +14,4 @@ const Main = ({ isAuthenticated }: { isAuthenticated: boolean }): JSX.Element =>
   return <div>{routes}</div>;
 };
 
-export default Main;
+export default RouteManagement;
