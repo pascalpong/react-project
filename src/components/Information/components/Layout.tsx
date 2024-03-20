@@ -96,17 +96,6 @@ function SidePane(props: BoxProps) {
   );
 }
 
-function Main(props: BoxProps) {
-  return (
-    <Box
-      component="main"
-      className="Main"
-      {...props}
-      sx={[{ p: 2 }, ...(Array.isArray(props.sx) ? props.sx : [props.sx])]}
-    />
-  );
-}
-
 function SideDrawer(
   props: BoxProps & { onClose: React.MouseEventHandler<HTMLDivElement> },
 ) {
@@ -145,11 +134,12 @@ function SideDrawer(
   );
 }
 
-export default {
+const Layout = {
   Root,
   Header,
   SideNav,
   SidePane,
-  SideDrawer,
-  Main,
+  SideDrawer
 };
+
+export default Layout;
