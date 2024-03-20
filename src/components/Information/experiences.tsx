@@ -7,7 +7,7 @@ const tipping = process.env.PUBLIC_URL + '/imgs/tipping.png';
 
 const ExperienceDetails = [
     {
-      name: 'Andrew Smith',
+      name: 'Best Pick F&B',
       location: 'Ho Chi Minh, Vietnam',
       position: 'Full-stack Developer',
       avatar2x: bestpick,
