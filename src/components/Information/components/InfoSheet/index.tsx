@@ -50,6 +50,10 @@ const InfoSheet = ({data}: {data: any}) => {
                                     <Typography level="body-xs">
                                         { ` ${experience.durations.start.month}, ${experience.durations.start.year} - ${experience.durations.end.present ? `PRESENT` : `${experience.durations.end.month}, ${experience.durations.end.year}`} `}
                                     </Typography>
+                                    <Divider />
+                                    <Typography level="body-xs">
+                                        {experience.location}
+                                    </Typography>
                                 </div> 
                             </Box>
                             <Divider component="div" sx={{ my: 2 }} />
