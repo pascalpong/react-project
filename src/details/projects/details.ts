@@ -4,7 +4,7 @@ export const projects = [
         title: "YVY",
         description: "This project was built for a new experience of e-commerce, there are videos included while shopping and magazine, news which users will be able to know more about brands. We use Next.js, Shopify and Typo3.",
         folder: "yvy",
-        url: "https://yvy.ch/"
+        url: "https://yvy.ch/shop/"
     },
     {
         id: 2,
