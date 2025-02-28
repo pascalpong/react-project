@@ -9,10 +9,12 @@ import { Routes, Route } from 'react-router-dom';
 import Information from './components/Information';
 import Projects from './PrivateRoutes/Projects';
 import PrivateRoute from './PrivateRoutes/index';
+import Home from './components/Home';
 
 const App = () => {
   return (
     <Routes>
+      <Route path="/" element={<Home />} />
       <Route path="/info" element={<Information />} />
       <Route 
         path="/projects" 
