@@ -5,32 +5,25 @@ import { useEffect, useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
 // import AuthProvider from './AuthProvider';
- 
-export default function FixedBottomNavigation() {
+import { Routes, Route } from 'react-router-dom';
+import Information from './components/Information';
+import Projects from './PrivateRoutes/Projects';
+import PrivateRoute from './PrivateRoutes/index';
 
-  const location = useLocation();
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
- 
-  useEffect(() => { 
-    const access = JSON.parse(localStorage.getItem('access') || '{}');
-    if (access && Object.keys(access).length > 0) {
-      setIsAuthenticated(true);
-    }
-  }, []); 
- 
+const App = () => {
   return (
-    <Box className={'page-transition'}>
-      <TransitionGroup>
-        <CSSTransition
-          key={location.key}
-          classNames="page-transition"
-          timeout={300}
-        >
-          {/* <AuthProvider> */}
-            <RouteManagement isAuthenticated={isAuthenticated} />
-          {/* </AuthProvider> */}
-        </CSSTransition>
-      </TransitionGroup>
-    </Box>
+    <Routes>
+      <Route path="/info" element={<Information />} />
+      <Route 
+        path="/projects" 
+        element={
+          <PrivateRoute>
+            <Projects />
+          </PrivateRoute>
+        } 
+      />
+    </Routes>
   );
-}
+};
+
+export default App;

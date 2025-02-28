@@ -13,6 +13,7 @@ const ContentSheet = ({checkSeriaResult}: {checkSeriaResult:(result: boolean) =>
   const [checkSerial, setCheckSerial] = useState(false);
   const [loading, setLoading] = useState(false);
   const [serial, setSerial] = useState('');
+  
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -36,26 +37,28 @@ const ContentSheet = ({checkSeriaResult}: {checkSeriaResult:(result: boolean) =>
   const handleCheckSerial = async () => {
     try {
       setLoading(true);
-      const response = CheckSerial(serial);
+      const response = await CheckSerial(serial);
       console.log('Serial check response:', response);
 
       if (response) {
-        setCheckSerial(true);
-        const accessData = {
+        // Match the expected data structure
+        localStorage.setItem('access', JSON.stringify({
           data: {
             serial: response.serial,
             title: response.title,
             description: response.description,
             authenticated: true
           }
-        };
-        console.log('Storing access data:', accessData);
-        localStorage.setItem('access', JSON.stringify(accessData));
-        CreateTimeLog(serial);
+        }));
+        
+        setCheckSerial(true);
         checkSeriaResult(true);
-        navigate('/projects');
+        CreateTimeLog(serial);
+        
+        setTimeout(() => {
+          navigate('/projects');
+        }, 100);
       } else {
-        console.log('Invalid serial');
         setCheckSerial(false);
         checkSeriaResult(false);
       }

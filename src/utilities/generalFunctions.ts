@@ -14,7 +14,7 @@ interface LogDisplay {
   totalAccesses: number;
 }
 
-const CheckSerial = (serial: string): SerialData | undefined => {
+const CheckSerial = async (serial: string): Promise<SerialData | undefined> => {
   const serialData = serials.serials.find((s: SerialData) => s.serial === serial);
   return serialData;
 }

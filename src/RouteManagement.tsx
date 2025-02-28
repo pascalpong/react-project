@@ -4,11 +4,18 @@ import Information from './components/Information';
 import PrivateRoute from './PrivateRoutes';
 import Projects from './PrivateRoutes/Projects';
 
-const RouteManagement = ({ isAuthenticated }: { isAuthenticated: boolean }): JSX.Element => { 
+const RouteManagement = (): JSX.Element => { 
   let routes = useRoutes([
     { path: '/', element: <Home /> },
     { path: '/info', element: <Information /> },
-    { path: '/projects', element: <PrivateRoute isAuthenticated={isAuthenticated} children={<Projects />} /> },
+    { 
+      path: '/projects', 
+      element: (
+        <PrivateRoute>
+          <Projects />
+        </PrivateRoute>
+      ) 
+    },
   ]);
 
   return <div>{routes}</div>;

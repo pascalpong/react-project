@@ -19,24 +19,9 @@ interface ContentProps {
   };
 }
 
-interface ProjectImage {
-  default: string;
-}
-
 const Content = ({ details }: ContentProps) => {
   const [selectedProject, setSelectedProject] = useState<number | null>(null);
 
-  // Import all images for each project
-  const getProjectImages = (folder: string): ProjectImage[] => {
-    try {
-      return Array.from({ length: 3 }, (_, i) => ({
-        default: `/projects/${folder}/image${i + 1}.png`
-      }));
-    } catch (error) {
-      console.error(`Error loading images for ${folder}:`, error);
-      return [];
-    }
-  };
 
   return (
     <Sheet
