@@ -3,9 +3,26 @@ const bestpick = process.env.PUBLIC_URL + '/imgs/bestpick.jpg';
 const is = process.env.PUBLIC_URL + '/imgs/is.png';
 const lexicon = process.env.PUBLIC_URL + '/imgs/lexicon.png';
 const tipping = process.env.PUBLIC_URL + '/imgs/tipping.png';
-
+const codeboxx = process.env.PUBLIC_URL + '/imgs/codeboxx.jpeg';
 
 const ExperienceDetails = [
+    {
+      name: 'Codeboxx',
+      location: 'Bangkok, Thailand',
+      position: 'Full-stack Developer',
+      avatar2x: codeboxx,
+      description: `Building, integrating APIs and maintaining web applications.`,
+      durations: {
+        start: {
+            month: 'Sep',
+            year: '2024'
+        },
+        end: {
+            present: true
+        }
+      },
+      stacks: ['NextJs', 'Typescript', 'Typo3', 'Shopify']
+    },
     {
       name: 'Best Pick F&B',
       location: 'Ho Chi Minh, Vietnam',
@@ -19,7 +36,8 @@ const ExperienceDetails = [
             year: '2023'
         },
         end: {
-            present: true
+            month: 'Aug',
+            year: '2024'
         }
       },
       stacks: ['NodeJs', 'React', 'MySql', 'MongoDB', 'Git', 'Docker', 'Redux']

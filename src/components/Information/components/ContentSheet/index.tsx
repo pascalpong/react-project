@@ -2,17 +2,17 @@ import AttachFileRoundedIcon from '@mui/icons-material/AttachFileRounded';
 import FolderCopyIcon from '@mui/icons-material/FolderCopy';
 import { Button, Input, Stack, Divider, Sheet, Chip, Box, Typography, Grid } from '@mui/joy';
 import { useEffect, useState } from 'react';
-import { useCheckSerialMutation } from '../../../../api/serialService';
+import { CheckSerial } from '../../../../utilities/generalFunctions';
 import { useNavigate } from 'react-router-dom';
 import Education from './Education';
 import Languages from './Language';
+import { CreateTimeLog } from '../../../../utilities/generalFunctions';
 
 const ContentSheet = ({checkSeriaResult}: {checkSeriaResult:(result: boolean) => void}): JSX.Element => {
 
   const [checkSerial, setCheckSerial] = useState(false);
   const [loading, setLoading] = useState(false);
   const [serial, setSerial] = useState('');
-  const [toCheckSerial] = useCheckSerialMutation();
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -36,19 +36,35 @@ const ContentSheet = ({checkSeriaResult}: {checkSeriaResult:(result: boolean) =>
   const handleCheckSerial = async () => {
     try {
       setLoading(true);
-      const response = await toCheckSerial({ serial }) as any;
-      if(response.data) {
+      const response = CheckSerial(serial);
+      console.log('Serial check response:', response);
+
+      if (response) {
         setCheckSerial(true);
-        setLoading(false);
-        localStorage.setItem('access', JSON.stringify(response.data));
-        navigate('/projects')
+        const accessData = {
+          data: {
+            serial: response.serial,
+            title: response.title,
+            description: response.description,
+            authenticated: true
+          }
+        };
+        console.log('Storing access data:', accessData);
+        localStorage.setItem('access', JSON.stringify(accessData));
+        CreateTimeLog(serial);
+        checkSeriaResult(true);
+        navigate('/projects');
       } else {
+        console.log('Invalid serial');
         setCheckSerial(false);
         checkSeriaResult(false);
-        setLoading(false);
       }
     } catch (error) {
-      console.log(error)
+      console.error('Error checking serial:', error);
+      setCheckSerial(false);
+      checkSeriaResult(false);
+    } finally {
+      setLoading(false);
     }
   };
  
@@ -124,7 +140,7 @@ const ContentSheet = ({checkSeriaResult}: {checkSeriaResult:(result: boolean) =>
             <Grid xs={12} lg={8}>
               <Stack spacing={1}>
                 <Education name='Assumption University' school='School of Architecture' description='Class of 2018 - Bangkok, Thailand' />
-                <Languages languages={['English', 'Thai']} description='Languages' />
+                <Languages languages={['English (IELTS 7.5)', 'Thai (Native)']} description='Languages' />
               </Stack>
             </Grid>
             <Grid xs={12} lg={4}>

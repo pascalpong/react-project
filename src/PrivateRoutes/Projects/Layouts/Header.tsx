@@ -1,10 +1,11 @@
 import { Box, Chip, Tooltip, Typography } from "@mui/joy";
 
-const Header = () => {
+
+const Header = ({ details }: { details: any }) => {
 
     const access = localStorage.getItem('access') ?? "{}";
     const data = JSON.parse(access).data;
-
+    
     return (
         <>
             <Box
@@ -19,7 +20,19 @@ const Header = () => {
                     level="title-lg"
                     textColor="text.primary" 
                 >
-                    Projects
+                    {`Welcome :) ${details.title}`}
+                </Typography>
+                <Typography
+                    level="body-sm"
+                    textColor="text.primary" 
+                >
+                    {`${details.description}`}
+                </Typography>
+                <Typography
+                    level="body-sm"
+                    textColor="text.primary" 
+                >
+                    {`You have accessed this page on ${details.timeLog}`}
                 </Typography>
                 <Box
                     sx={{
@@ -36,13 +49,8 @@ const Header = () => {
                             level="body-sm"
                             sx={{ mr: 1, display: 'inline-block' }}
                         >
-                            to
+                            to 
                         </Typography>
-                        <Tooltip size="sm" title="Copy email" variant="outlined">
-                            <Chip size="sm" variant="soft" color="primary" onClick={() => {}}>
-                                {data.receiver}
-                            </Chip>
-                        </Tooltip>
                     </div>
                 </Box>
             </Box>
