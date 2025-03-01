@@ -87,7 +87,7 @@ const getProjectImageCount = (folder: string): number => {
     case 'bualuang':
       return 3;
     case 'goodtech':
-      return 5;
+      return 4;
     case 'centralpattana':
       return 7;
     default:
