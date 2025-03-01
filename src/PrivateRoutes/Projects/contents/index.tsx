@@ -48,6 +48,7 @@ const Content = ({ details }: ContentProps) => {
             1024: { slidesPerView: 3 },
           }}
         >
+          <div className="pt-10">
           {projects.map((project: any) => (
             <SwiperSlide key={project.id}>
               <Card
@@ -109,6 +110,7 @@ const Content = ({ details }: ContentProps) => {
               </Card>
             </SwiperSlide>
           ))}
+          </div>
         </Swiper>
       </Box>
 
@@ -124,40 +126,52 @@ const Content = ({ details }: ContentProps) => {
           }}
         >
           {selectedProject && (
-            <Box sx={{ 
-              maxHeight: '80vh', 
-              overflowY: 'auto',
-              '&::-webkit-scrollbar': {
-                width: '8px',
-              },
-              '&::-webkit-scrollbar-track': {
-                background: '#f0f0f0',
-                borderRadius: '4px',
-              },
-              '&::-webkit-scrollbar-thumb': {
-                background: '#888',
-                borderRadius: '4px',
-                '&:hover': {
-                  background: '#666',
+            <>
+              <Box sx={{ 
+                maxHeight: '80vh', 
+                overflowY: 'auto',
+                '&::-webkit-scrollbar': {
+                  width: '8px',
                 },
-              },
-            }}>
-              {selectedProject && Array.from(
-                { length: getProjectImageCount(projects.find(p => p.id === selectedProject)?.folder || '') }, 
-                (_, i) => (
-                  <img
-                    key={i + 1}
-                    src={`/projects/${projects.find(p => p.id === selectedProject)?.folder}/image${i + 1}.png`}
-                    alt={`Project ${selectedProject} ${i + 1}`}
-                    style={{
-                      width: '100%',
-                      objectFit: 'cover',
-                      marginBottom: '16px'
-                    }}
-                  />
-                )
-              )}
-            </Box>
+                '&::-webkit-scrollbar-track': {
+                  background: '#f0f0f0',
+                  borderRadius: '4px',
+                },
+                '&::-webkit-scrollbar-thumb': {
+                  background: '#888',
+                  borderRadius: '4px',
+                  '&:hover': {
+                    background: '#666',
+                  },
+                },
+              }}>
+                {selectedProject && Array.from(
+                  { length: getProjectImageCount(projects.find(p => p.id === selectedProject)?.folder || '') }, 
+                  (_, i) => (
+                    <img
+                      key={i + 1}
+                      src={`/projects/${projects.find(p => p.id === selectedProject)?.folder}/image${i + 1}.png`}
+                      alt={`Project ${selectedProject} ${i + 1}`}
+                      style={{
+                        width: '100%',
+                        objectFit: 'cover',
+                        marginBottom: '16px'
+                      }}
+                    />
+                  )
+                )}
+              </Box>
+              <Box sx={{ display: 'flex', justifyContent: 'center', mt: 2 }}>
+                <Button
+                  fullWidth
+                  variant="solid"
+                  color="danger"
+                  onClick={() => setSelectedProject(null)}
+                >
+                  Close
+                </Button>
+              </Box>
+            </>
           )}
         </ModalDialog>
       </Modal>

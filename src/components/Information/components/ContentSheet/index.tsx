@@ -89,7 +89,7 @@ const ContentSheet = ({checkSeriaResult}: {checkSeriaResult:(result: boolean) =>
             level="title-lg"
             textColor="text.primary" 
           >
-            Enter the serial number to see my projects and Github!
+            Enter the code to see my projects and Github!
           </Typography>
           <Box
             sx={{

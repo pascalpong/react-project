@@ -57,7 +57,7 @@ export default function Information() {
         onClose={() => setOpen(false)} 
         anchorOrigin={{vertical: 'top' , horizontal: 'center'}}
       >
-        Serial number is not valid!
+        The code is not valid!
       </Snackbar>
     </>
   );

@@ -2,6 +2,7 @@ import { Button, Stack } from "@mui/joy";
 import GitHubIcon from '@mui/icons-material/GitHub';
 import AccountBoxRoundedIcon from '@mui/icons-material/AccountBoxRounded';
 import { useNavigate } from "react-router-dom";
+import EmailIcon from '@mui/icons-material/Email';
 
 
 const Footer = () => {
@@ -12,6 +13,32 @@ const Footer = () => {
   }
 
     return (
+      <>
+      <Stack
+        direction="row"
+        justifyContent="space-between"
+        sx={{
+          position: 'fixed',
+          bottom: 70,
+          width: '100vw',
+          py: 1,
+          backgroundColor: 'background.body',
+          borderTop: '1px solid',
+          borderColor: 'divider',
+        }}
+      >
+        <Stack direction="row" spacing={1} width="100%" sx={{ paddingX: 1 }}>
+          <Button
+            fullWidth
+            variant="solid"
+            color="primary"
+            onClick={() => window.open('mailto:pongchindap@gmail.com', '_blank')}
+            endDecorator={<EmailIcon />}
+          >
+            Email Me
+          </Button>
+        </Stack>
+      </Stack>
     <Stack
       id="tab-bar"
       direction="row"
@@ -55,6 +82,7 @@ const Footer = () => {
         Profile
       </Button>
     </Stack>
+    </>
     )
 }
 
