@@ -56,7 +56,7 @@ const ExperienceDetails = [
             year: '2022'
         },
         end: {
-            month: 'May',
+            month: 'Jun',
             year: '2023'
         }
       },
