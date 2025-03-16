@@ -25,7 +25,7 @@ const Home = () => {
                 To find out more about me and my work experience.
             </Typography>
             <Typography fontSize="lg" textColor="text.secondary" lineHeight="lg">
-                Please copy the serial number provided and paste it into the input field in the next page.
+                Please copy the CODE provided and paste it into the input field in the next page.
             </Typography>
             <Button variant='outlined' onClick={navigateTo('/info')} size="sm" fullWidth endDecorator={<ArrowForward />}>
                 See more

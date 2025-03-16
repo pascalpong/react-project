@@ -15,7 +15,11 @@ interface LogDisplay {
 }
 
 const CheckSerial = async (serial: string): Promise<SerialData | undefined> => {
-  const serialData = serials.serials.find((s: SerialData) => s.serial === serial);
+  // Convert input serial to lowercase for comparison
+  const normalizedSerial = serial.toLowerCase();
+  const serialData = serials.serials.find((s: SerialData) => 
+    s.serial.toLowerCase() === normalizedSerial
+  );
   return serialData;
 }
 
