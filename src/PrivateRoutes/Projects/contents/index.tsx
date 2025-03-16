@@ -54,9 +54,10 @@ const Content = ({ details }: ContentProps) => {
               <Card
                 variant="outlined"
                 sx={{
-                  height: '100%',
+                  height: '40vh',
                   transition: 'transform 0.2s, box-shadow 0.2s',
                   cursor: 'pointer',
+                  overflowY: 'auto',
                   '&:hover': {
                     transform: 'translateY(-4px)',
                     boxShadow: 'md',
