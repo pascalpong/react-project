@@ -5,6 +5,7 @@ import reportWebVitals from './reportWebVitals';
 import { BrowserRouter } from "react-router-dom";
 import { Provider } from 'react-redux';
 import { store } from './app/store';
+import { Analytics } from '@vercel/analytics/react';
 
 const root = document.getElementById('root');
  
@@ -13,6 +14,7 @@ if (root !== null) {
     <BrowserRouter>
       <Provider store={store}>
         <App />
+        <Analytics />
       </Provider>
     </BrowserRouter>
   );
