@@ -5,6 +5,7 @@ import Content from "./contents";
 import { CheckSerial } from "../../utilities/generalFunctions";
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import PageMeta from "../../components/SEO/PageMeta";
 
 const Projects = () => {
     const navigate = useNavigate();
@@ -26,10 +27,21 @@ const Projects = () => {
 
     return (
         <> 
+        <PageMeta 
+            title="Projects - Portfolio Showcase"
+            description="Explore Pascal Pongchinda's portfolio of web development projects including e-commerce platforms, AI-powered applications, and enterprise solutions built with Next.js, React, PHP, Laravel, and more."
+            keywords="Pascal Pongchinda, Projects, Portfolio, Web Development, E-commerce, Next.js, React, PHP, Laravel, JavaScript, Full-Stack Development, Case Studies"
+        />
         <Footer />
-        <Container>
+        <Container
+            maxWidth="xl"
+            sx={{
+                py: { xs: 4, sm: 6, md: 8 },
+                px: { xs: 2, sm: 3, md: 4 },
+            }}
+        >
             <Grid container>
-                <Grid p={1} item xs={12} lg={12}> 
+                <Grid item xs={12} lg={12}> 
                     {accessData.data && <Content details={accessData.data} />}
                 </Grid>
             </Grid> 

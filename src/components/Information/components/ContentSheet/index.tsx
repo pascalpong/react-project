@@ -7,12 +7,15 @@ import { useNavigate } from 'react-router-dom';
 import Education from './Education';
 import Languages from './Language';
 import { CreateTimeLog } from '../../../../utilities/generalFunctions';
+import { motion } from 'framer-motion';
+import { prefersReducedMotion } from '../../../../utilities/animations';
 
 const ContentSheet = ({checkSeriaResult}: {checkSeriaResult:(result: boolean) => void}): JSX.Element => {
 
   const [checkSerial, setCheckSerial] = useState(false);
   const [loading, setLoading] = useState(false);
   const [serial, setSerial] = useState('');
+  const reducedMotion = prefersReducedMotion();
   
   const navigate = useNavigate();
 
@@ -74,20 +77,34 @@ const ContentSheet = ({checkSeriaResult}: {checkSeriaResult:(result: boolean) =>
   return (
       <Sheet
         id='content'
+        component={motion.div}
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.4 }}
         variant="outlined" 
         sx={{  
-          borderRadius: 'sm', 
+          borderRadius: 'md', 
           mb: 3,
           width: '100%',
+          boxShadow: 'sm',
+          '&:hover': {
+            boxShadow: 'md',
+            transition: 'box-shadow 0.3s ease',
+          },
         }}
       > 
         <Stack
-          spacing={1}
-          sx={{ p: 2, display: 'flex', flexDirection: 'column', alignItems: 'center' }}
+          spacing={2}
+          sx={{ p: { xs: 2, sm: 3 }, display: 'flex', flexDirection: 'column', alignItems: 'center' }}
         >
           <Typography
             level="title-lg"
-            textColor="text.primary" 
+            textColor="text.primary"
+            sx={{ 
+              fontWeight: 700,
+              textAlign: 'center',
+              mb: 1,
+            }}
           >
             Enter the code to see my projects and Github!
           </Typography>
@@ -98,6 +115,7 @@ const ContentSheet = ({checkSeriaResult}: {checkSeriaResult:(result: boolean) =>
               alignItems: 'start', 
               flexWrap: 'wrap', 
               width: '100%',
+              gap: 1,
             }}
           > 
             <Input
@@ -107,6 +125,12 @@ const ContentSheet = ({checkSeriaResult}: {checkSeriaResult:(result: boolean) =>
               placeholder="Serial number"
               onChange={onChangeSerial}
               value={serial}
+              size="sm"
+              sx={{
+                flex: 1,
+                minWidth: { xs: '150px', sm: '200px' },
+                fontSize: { xs: '0.875rem', sm: '1rem' },
+              }}
               endDecorator={
                 <Button 
                   variant="outlined"
@@ -114,49 +138,84 @@ const ContentSheet = ({checkSeriaResult}: {checkSeriaResult:(result: boolean) =>
                   startDecorator={<FolderCopyIcon />}
                   loading={loading}
                   onClick={handleCheckSerial}
+                  component={motion.button}
+                  whileHover={reducedMotion ? {} : { scale: 1.02 }}
+                  whileTap={reducedMotion ? {} : { scale: 0.98 }}
+                  size="sm"
+                  sx={{
+                    transition: 'all 0.2s ease',
+                    whiteSpace: 'nowrap',
+                    fontSize: { xs: '0.75rem', sm: '0.875rem' },
+                  }}
                 >
-                  See Projects
+                  <Box component="span" sx={{ display: { xs: 'none', sm: 'inline' } }}>
+                    See Projects
+                  </Box>
+                  <Box component="span" sx={{ display: { xs: 'inline', sm: 'none' } }}>
+                    See
+                  </Box>
                 </Button >
               } 
             />
           </Box>
         </Stack> 
-        <Divider/>
+        <Divider sx={{ my: 2 }} />
         <Stack 
-          spacing={1}
+          spacing={2}
           flexDirection={'column'} 
           justifyContent={'center'}
           flexGrow={1}
-          padding={1}
+          padding={{ xs: 2, sm: 3 }}
         >
-          <Typography level="body-sm" mt={3} mb={3}>
-            <br />
+          <Typography 
+            level="body-md" 
+            textColor="text.secondary"
+            sx={{ 
+              lineHeight: 1.7,
+              textAlign: 'justify',
+            }}
+          >
             Has over 3 years of experience both in Thailand and abroad in
             web - development (PHP and JS based) and 2 years of experience as
             a part-time 3D visualizer. Collaborated with various kinds of projects
             and various scales of clients.
             Graduated from an international design school in Bangkok,
             Thailand.
-            <br /> 
           </Typography>
-          <Grid container spacing={1}>
-            <Grid xs={12} lg={8}>
-              <Stack spacing={1}>
+          <Grid container spacing={{ xs: 1.5, sm: 2 }}>
+            <Grid xs={12} md={8} lg={8}>
+              <Stack spacing={{ xs: 1.5, sm: 2 }}>
                 <Education name='Assumption University' school='School of Architecture' description='Class of 2018 - Bangkok, Thailand' />
                 <Languages languages={['English (IELTS 7.5)', 'Thai (Native)']} description='Languages' />
               </Stack>
             </Grid>
-            <Grid xs={12} lg={4}>
+            <Grid xs={12} md={4} lg={4}>
               <Button
                 size="sm"
                 variant='outlined'
                 color='success'
                 fullWidth 
-                sx={{ height: '100%'}}
                 startDecorator={<AttachFileRoundedIcon />}
                 onClick={() => window.open('https://drive.google.com/file/d/10KX5sxC3ifiPkR_Kt6EPS50Z-T9Ae_mt/view?usp=drivesdk', '_blank')}
+                component={motion.button}
+                whileHover={reducedMotion ? {} : { scale: 1.02 }}
+                whileTap={reducedMotion ? {} : { scale: 0.98 }}
+                sx={{ 
+                  height: { xs: 'auto', md: '100%' },
+                  py: { xs: 1.5, sm: 2 },
+                  fontSize: { xs: '0.75rem', sm: '0.875rem' },
+                  transition: 'all 0.2s ease',
+                }}
               >
-                <Typography level="body-sm" textAlign={'left'} color='success'>
+                <Typography 
+                  level="body-sm" 
+                  textAlign={'left'} 
+                  color='success' 
+                  sx={{ 
+                    fontWeight: 600,
+                    fontSize: { xs: '0.75rem', sm: '0.875rem' },
+                  }}
+                >
                   Download my CV
                 </Typography>
               </Button>

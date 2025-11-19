@@ -1,6 +1,5 @@
-import { Box, Grid, Card, CardContent, Typography, Sheet, Divider, Modal, ModalDialog, Stack, Button } from '@mui/joy';
+import { Box, Card, CardContent, Typography, Sheet, Divider, Modal, ModalDialog, ModalClose, Stack, Button } from '@mui/joy';
 import { projects } from '../../../details/projects/details';
-import ProjectDetails from '../ProjectDetails';
 import Header from '../Layouts/Header';
 import { useState } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
@@ -9,6 +8,8 @@ import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import { getProjectImageCount } from '../../../utilities/generalFunctions';
+import { motion } from 'framer-motion';
+import { prefersReducedMotion } from '../../../utilities/animations';
 
 interface ContentProps {
   details: {
@@ -21,21 +22,26 @@ interface ContentProps {
 
 const Content = ({ details }: ContentProps) => {
   const [selectedProject, setSelectedProject] = useState<number | null>(null);
-
+  const reducedMotion = prefersReducedMotion();
 
   return (
     <Sheet
+      component={motion.div}
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.4 }}
       variant="outlined"
       sx={{
         minHeight: 500,
-        borderRadius: 'sm',
-        p: 2,
+        borderRadius: 'md',
+        p: { xs: 2, sm: 3 },
         mb: 3,
+        boxShadow: 'sm',
       }}
     >
       <Header details={details} />
-      <Divider />
-      <Box sx={{ mt: 2 }}>
+      <Divider sx={{ my: 2 }} />
+      <Box sx={{ mt: 3 }}>
         <Swiper
           modules={[Navigation, Pagination]}
           pagination={{ clickable: true }}
@@ -48,49 +54,76 @@ const Content = ({ details }: ContentProps) => {
             1024: { slidesPerView: 3 },
           }}
         >
-          <div className="pt-10">
-          {projects.map((project: any) => (
+          {projects.map((project: any, index: number) => (
             <SwiperSlide key={project.id}>
               <Card
+                component={motion.div}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.4, delay: index * 0.1 }}
                 variant="outlined"
                 sx={{
-                  height: '40vh',
-                  transition: 'transform 0.2s, box-shadow 0.2s',
+                  height: { xs: 'auto', md: '45vh' },
+                  minHeight: { xs: '300px', md: '400px' },
                   cursor: 'pointer',
                   overflowY: 'auto',
-                  '&:hover': {
-                    transform: 'translateY(-4px)',
-                    boxShadow: 'md',
-                  },
                   display: 'flex',
-                  flexDirection: 'column'
+                  flexDirection: 'column',
+                  boxShadow: 'sm',
+                  borderRadius: 'md',
+                  '&:hover': {
+                    boxShadow: 'md',
+                    transition: 'box-shadow 0.3s ease',
+                  },
                 }}
                 onClick={() => setSelectedProject(project.id)}
+                whileHover={reducedMotion ? {} : { y: -4, transition: { duration: 0.2 } }}
               >
-                <CardContent>
-                  <Typography level="h3" sx={{ mb: 2 }}>
+                <CardContent sx={{ p: { xs: 2, sm: 2.5 }, flex: 1, display: 'flex', flexDirection: 'column' }}>
+                  <Typography 
+                    level="h3" 
+                    sx={{ 
+                      mb: 2,
+                      fontWeight: 700,
+                      letterSpacing: '-0.01em',
+                    }}
+                  >
                     {project.title}
                   </Typography>
-                  <Typography level="body-sm">
+                  <Typography 
+                    level="body-sm"
+                    textColor="text.secondary"
+                    sx={{ 
+                      lineHeight: 1.7,
+                      flex: 1,
+                    }}
+                  >
                     {project.description}
                   </Typography>
                 </CardContent>
 
-                <Box sx={{ mt: 'auto' }}>
+                <Box sx={{ mt: 'auto', p: { xs: 1.5, sm: 2 } }}>
                     <Stack 
                       direction="row" 
-                      spacing={1} 
-                      sx={{ mt: 1, p: 1 }}
+                      spacing={1.5}
                     >
                         {project.url && 
                         <Button
                           variant="outlined"
                           color="neutral"
+                          size="md"
                           onClick={(e) => {
                             e.stopPropagation();
                             window.open(project.url, '_blank');
                           }}
                           fullWidth
+                          component={motion.button}
+                          whileHover={reducedMotion ? {} : { scale: 1.02 }}
+                          whileTap={reducedMotion ? {} : { scale: 0.98 }}
+                          sx={{
+                            transition: 'all 0.2s ease',
+                            fontWeight: 600,
+                          }}
                         >
                           Visit Website
                         </Button>}
@@ -98,11 +131,19 @@ const Content = ({ details }: ContentProps) => {
                         <Button
                           variant="outlined"
                           color="neutral"
+                          size="md"
                           onClick={(e) => {
                             e.stopPropagation();
                             setSelectedProject(project.id);
                           }}
                           fullWidth
+                          component={motion.button}
+                          whileHover={reducedMotion ? {} : { scale: 1.02 }}
+                          whileTap={reducedMotion ? {} : { scale: 0.98 }}
+                          sx={{
+                            transition: 'all 0.2s ease',
+                            fontWeight: 600,
+                          }}
                         >
                           View Images
                         </Button>
@@ -111,7 +152,6 @@ const Content = ({ details }: ContentProps) => {
               </Card>
             </SwiperSlide>
           ))}
-          </div>
         </Swiper>
       </Box>
 
@@ -121,56 +161,75 @@ const Content = ({ details }: ContentProps) => {
       >
         <ModalDialog
           sx={{
-            maxWidth: 800,
-            width: '100%',
-            p: 3
+            maxWidth: { xs: '95vw', sm: 800 },
+            width: { xs: '95vw', sm: '100%' },
+            maxHeight: { xs: '90vh', sm: '85vh' },
+            height: { xs: 'auto', sm: 'auto' },
+            p: 0,
+            m: { xs: 1, sm: 2 },
+            borderRadius: 'md',
+            display: 'flex',
+            flexDirection: 'column',
+            overflow: 'hidden',
           }}
         >
           {selectedProject && (
             <>
               <Box sx={{ 
-                maxHeight: '80vh', 
+                p: { xs: 1.5, sm: 3 },
+                pb: { xs: 1, sm: 2 },
+                display: 'flex',
+                justifyContent: 'space-between',
+                alignItems: 'center',
+                borderBottom: '1px solid',
+                borderColor: 'divider',
+                flexShrink: 0,
+              }}>
+                <Typography level="title-lg" sx={{ fontWeight: 700 }}>
+                  {projects.find(p => p.id === selectedProject)?.title || 'Project Images'}
+                </Typography>
+                <ModalClose onClick={() => setSelectedProject(null)} />
+              </Box>
+              <Box sx={{ 
+                maxHeight: { xs: 'calc(90vh - 180px)', sm: 'calc(85vh - 180px)' },
                 overflowY: 'auto',
+                overflowX: 'hidden',
+                flex: 1,
+                p: { xs: 1.5, sm: 3 },
+                WebkitOverflowScrolling: 'touch',
                 '&::-webkit-scrollbar': {
                   width: '8px',
                 },
                 '&::-webkit-scrollbar-track': {
-                  background: '#f0f0f0',
-                  borderRadius: '4px',
+                  background: 'transparent',
                 },
                 '&::-webkit-scrollbar-thumb': {
-                  background: '#888',
+                  background: 'rgba(0,0,0,0.2)',
                   borderRadius: '4px',
                   '&:hover': {
-                    background: '#666',
+                    background: 'rgba(0,0,0,0.3)',
                   },
                 },
               }}>
-                {selectedProject && Array.from(
+                {Array.from(
                   { length: getProjectImageCount(projects.find(p => p.id === selectedProject)?.folder || '') }, 
                   (_, i) => (
-                    <img
+                    <Box
                       key={i + 1}
+                      component="img"
                       src={`/projects/${projects.find(p => p.id === selectedProject)?.folder}/image${i + 1}.png`}
                       alt={`Project ${selectedProject} ${i + 1}`}
-                      style={{
+                      sx={{
                         width: '100%',
-                        objectFit: 'cover',
-                        marginBottom: '16px'
+                        height: 'auto',
+                        objectFit: 'contain',
+                        mb: { xs: 1.5, sm: 2 },
+                        borderRadius: 'sm',
+                        display: 'block',
                       }}
                     />
                   )
                 )}
-              </Box>
-              <Box sx={{ display: 'flex', justifyContent: 'center', mt: 2 }}>
-                <Button
-                  fullWidth
-                  variant="solid"
-                  color="danger"
-                  onClick={() => setSelectedProject(null)}
-                >
-                  Close
-                </Button>
               </Box>
             </>
           )}

@@ -6,17 +6,20 @@ import { BrowserRouter } from "react-router-dom";
 import { Provider } from 'react-redux';
 import { store } from './app/store';
 import { Analytics } from '@vercel/analytics/react';
+import { HelmetProvider } from 'react-helmet-async';
 
 const root = document.getElementById('root');
  
 if (root !== null) {
   createRoot(root).render(
-    <BrowserRouter>
-      <Provider store={store}>
-        <App />
-        <Analytics />
-      </Provider>
-    </BrowserRouter>
+    <HelmetProvider>
+      <BrowserRouter>
+        <Provider store={store}>
+          <App />
+          <Analytics />
+        </Provider>
+      </BrowserRouter>
+    </HelmetProvider>
   );
 }
 
