@@ -22,7 +22,7 @@ const PrivateRoute = ({ children }: PrivateRouteProps) => {
   return isAuthenticated() ? (
     children || <React.Fragment />
   ) : (
-    <Navigate to="/info#serial" replace state={{ from: location }} />
+    <Navigate to="/#private" replace state={{ from: location }} />
   );
 };
 
