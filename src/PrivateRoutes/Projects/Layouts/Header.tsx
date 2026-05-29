@@ -1,4 +1,4 @@
-import { Box, Chip, Tooltip, Typography } from "@mui/joy";
+import { Box, Typography } from "@mui/joy";
 
 
 const Header = ({ details }: { details: any }) => {
